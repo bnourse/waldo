@@ -2,7 +2,8 @@ require 'sinatra'
 require 'pry'
 require_relative './functions.rb'
 
-wh = WallyHandler.new
+wh = WaldoHandler.new
+waldo_found = false
 
 get("/") do 
 	erb :index
@@ -13,10 +14,11 @@ post("/check_click") do
 	y = params["y"].to_i
 	image_name = "ww-1.jpg"
 	waldo_found = wh.check_click(image_name,x,y)
-	binding.pry
-	if waldo_found
+	# binding.pry
+	redirect("/check_click")
+end
 
-	else
-
-	end
+get("/check_click") do
+	@waldo_found = waldo_found
+	erb :check_click
 end

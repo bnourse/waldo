@@ -1,6 +1,6 @@
 require 'csv'
 
-class WallyHandler
+class WaldoHandler
 
 	def initialize
 		@cll = CSVLocationLoader.new
@@ -9,8 +9,8 @@ class WallyHandler
 
 	def check_click(image_name,x,y)
 		loc_hash = @cll.get_location_for_image_name(image_name)
-		correct_x = loc_hash["wally_x"].to_i
-		correct_y = loc_hash["wally_y"].to_i
+		correct_x = loc_hash["waldo_x"].to_i
+		correct_y = loc_hash["waldo_y"].to_i
 		return click_is_close_enough(x,y,correct_x,correct_y)
 	end
 
@@ -51,4 +51,3 @@ class CSVLocationLoader
 		return location_hash
 	end
 end
-
