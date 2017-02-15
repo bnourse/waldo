@@ -21,14 +21,26 @@ function wwImgClicked(e) {
 	checkClick(x,y);
 }
 
+// var click = {
+// 	check: function(){
+
+// 	}
+// }
+
+// click.check()
+// click.getX
+// check out UPCASE tutorials
+// CONNECT reimbursement
+
+
 function checkClick(x,y) {
 	var querystring = "x=" + x + "&y=" + y;
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/check_click', true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(querystring);
-	xhr.addEventListener("load", function () {
-		waldo_found = xhr.responseText;
+	xhr.addEventListener("load", function (e) {
+		waldo_found = e.target.responseText;
 		if (waldo_found == "true") {
 			var is_high_score = checkHighScore(seconds);
 			endGame(is_high_score);

@@ -33,7 +33,7 @@ post("/check_high_score") do
 	redirect("/check_high_score")
 end
 
-get("/check_click") do
+get("/check_high_score") do
 	@new_high_score = new_high_score
 	erb :check_high_score
 end
