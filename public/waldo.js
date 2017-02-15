@@ -22,7 +22,7 @@ function wwImgClicked(e) {
 }
 
 function checkClick(x,y) {
-	querystring = "x=" + x + "&y=" + y;
+	var querystring = "x=" + x + "&y=" + y;
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/check_click', true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -30,8 +30,9 @@ function checkClick(x,y) {
 	xhr.addEventListener("load", function () {
 		waldo_found = xhr.responseText;
 		if (waldo_found == "true") {
-			endGame();
-			checkHighScore(seconds);
+			var is_high_score = checkHighScore(seconds);
+			endGame(is_high_score);
+			
 		}
 		else {
 			keepTrying();
@@ -39,14 +40,28 @@ function checkClick(x,y) {
 	});
 }
 
-function endGame() {
+function endGame(is_high_score) {
 	clearInterval(timer);
+	high_score_msg = "";
+	if (is_high_score == "true") {
+		high_score_msg = "Congratulations! You set a new high score!";
+	}
 	alert("You found waldo in " + seconds + "s");
 }
 
-function checkHighScore() {
-	image_name = getImageName();
-	debugger;
+function checkHighScore(seconds_taken) {
+	var image_name = getImageName();
+	var querystring = "image_name=" + image_name + "&seconds_taken=" + seconds_taken;
+	var xhr = new XMLHttpRequest();
+	var is_high_score;
+	xhr.open('POST', '/check_high_score', true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(querystring);
+	xhr.addEventListener("load", function () {
+		is_high_score = xhr.responseText;
+	});
+
+	return is_high_score;
 }
 
 function getImageName() {

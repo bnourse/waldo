@@ -26,7 +26,12 @@ class WaldoHandler
 		click_is_acceptable =  x_is_acceptable && y_is_acceptable
 		return click_is_acceptable
 	end
+
+	def check_high_score(image_name,seconds_taken)
+
+	end
 end
+
 
 class CSVLocationLoader
 	def initialize
