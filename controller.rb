@@ -13,7 +13,7 @@ end
 post("/check_click") do
 	x = params["x"].to_i
 	y = params["y"].to_i
-	image_name = "ww-1.jpg"
+	image_name = params["image_name"]
 	waldo_found = wh.check_click(image_name,x,y)
 	# redirect("/check_click")
 	return waldo_found.to_s

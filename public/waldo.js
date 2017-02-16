@@ -18,6 +18,7 @@ function addWaldoListener() {
 function wwImgClicked(e) {
 	x = e.offsetX;
 	y = e.offsetY;
+	debugger;
 	checkClick(x,y);
 }
 
@@ -34,7 +35,7 @@ function wwImgClicked(e) {
 
 
 function checkClick(x,y) {
-	var querystring = "x=" + x + "&y=" + y;
+	var querystring = "x=" + x + "&y=" + y + "&image_name=" + getImageName();
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/check_click', true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
