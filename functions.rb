@@ -4,7 +4,7 @@ class WaldoHandler
 
 	def initialize
 		@wcm = WaldoCSVManipulator.new
-		@close_enough = 25
+		@close_enough = 25 
 	end
 
 	def set_close_enough(pixel_difference)
@@ -18,6 +18,8 @@ class WaldoHandler
 		return click_is_close_enough(x,y,correct_x,correct_y)
 	end
 
+	#Waldo will be considered found if click is within a 2*@close_enough box
+	#centered on the coords given in the csv for waldo's location
 	def click_is_close_enough(x,y,correct_x,correct_y)
 		x_min_acceptable = correct_x - @close_enough
 		x_max_acceptable = correct_x + @close_enough
